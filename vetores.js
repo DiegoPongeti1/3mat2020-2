@@ -51,3 +51,27 @@ console.log(vetor1)
 let removido5 = vetor1.splice(1, 1)
 
 console.log(vetor1, removido5)
+
+console.log(' - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -')
+
+//Percursos de vetores
+
+//Forma 1: for tradicional
+// length -> a quantidade de elementos do vetor
+for (let i = 0; i < vetor1.length; i++){
+    console.log(vetor1[1])
+}
+
+console.log('- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ')
+
+//Forma 2: for..of
+for(let fruta of vetor1){
+    console.log(fruta)
+}
+console.log('- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ')
+
+//Forma 3: forEach
+
+vetor1.forEach(function(valor){
+    console.log(valor)
+})

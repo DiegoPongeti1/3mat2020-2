@@ -102,7 +102,9 @@ console.log(estadosNe)
       segunda pela primeira.  população divido por aréa
 */
 
-
+let estadosNe = function(x) {
+    return x / x
+}
 
 /*
    3) Percorra o vetor estadosNe usando um for tradicional. Para cada estado,

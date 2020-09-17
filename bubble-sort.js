@@ -22,10 +22,28 @@ function bubbleSort(vetor) {
     console.log({passadas, comparacoes, totalTrocas})
 }
 
-let nums = [58, 16, 33, 82, 4, 47, 25, 71, 96, 60, 41, 89]
+// let nums = [58, 16, 33, 82, 4, 47, 25, 71, 96, 60, 41, 89]
 
-console.time('Teste 1')
-bubbleSort(nums)
-console.timeEnd('Teste 1')
+// console.time('Teste 1')
+// bubbleSort(nums)
+// console.timeEnd('Teste 1')
 
-console.log(nums)
+// console.log(nums)
+
+// const empresas = require('./dados/15-mil-empresas')
+
+// console.time('Teste empresa')
+// bubbleSort(empresas)
+// console.timeEnd('Teste empresas')
+// console.log(empresas)
+
+
+const nomes = require('./dados/100-mil-nomes')
+
+console.time('Teste nomes')
+bubbleSort(nomes)
+console.timeEnd('Teste nomes')
+console.log(nomes)
+
+
+

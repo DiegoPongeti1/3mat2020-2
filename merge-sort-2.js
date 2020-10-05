@@ -1,13 +1,22 @@
 
     let comparacoes = 0, divisoes = 0, juncoes = 0
-    function mergeSort(vetor) {
+
+/*
+    finComp() -> função de comparação
+    Parâmetros: dois valores do vetor para serem comparados 
+    Retorno:
+        - true, se o primeiro valor for MAIOR que o segundo
+        - false, caso contrário 
+*/
+    function mergeSort(vetor, fnComp) {
 
     function mesclarVetores(vetEsq, vetDir){
         let vetRes = [], posEsq = 0, posDir = 0, sobras
     
 
     while(posEsq < vetEsq.length && posDir < vetDir.length){
-        if(vetEsq[posEsq] < vetDir[posDir]){
+        // if(vetEsq[posEsq] < vetDir[posDir]){
+            if(fnComp[posDir], vetEsq[posEsq]){ // Parâmetros invertidos 
             vetRes.push(vetEsq[posDir])
             posEsq++
         } 
@@ -34,9 +43,9 @@ function mergeSort(vetor) {
     let vetEsq = vetor.slice(0, meio)
     let vetDir = vetor.slice(meio) // Do meio ao fim
     divisoes++
-    console.log({vetor, vetEsq, vetFim})
-    vetEsq = mergeSort(vetEsq)
-    vetDir = mergeSort(vetDir)
+    // console.log({vetor, vetEsq, vetDir})
+    vetEsq = mergeSort(vetEsq, fnComp)
+    vetDir = mergeSort(vetDir, fnComp)
     let vetFinal = mesclarVetores(vetEsq, vetDir)
     juncoes++
     // console.log('DEPOIS:', {vetFinal, vetEsq, vetDir})
@@ -47,10 +56,10 @@ function mergeSort(vetor) {
 
 //  console.log(mergeSort([2, 3, 5, 8, 9, 0, 1, 4, 6, 7]))
 
-const nomes = require('./dados/100-mil-nomes')
-console.time('Teste nome')
-console.log(mergeSort(nomes))
+const candidatos = require('./dados/candidatos-2018')
+console.time('Teste candidatos')
+console.log(mergeSort(candidatos, (a, b) => a.NM_CANDIDATO > b.NM_CANDIDATO))
 console.timeEnd('Teste nomes')
-let memoria = process.memoryUsage.heapUsed / 1024 / 1024 
+let memoria = process.memoryUsage().heapUsed / 1024 / 1024 
 console.log('Memória usada (MB): ', memoria)
 console.log({comparacoes, divisoes, juncoes})

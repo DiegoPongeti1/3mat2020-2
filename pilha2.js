@@ -1,48 +1,4 @@
-class Stack {
-    constructor() {
-        this.data = [] // Armazenamento 
-    }
-
-    // Inserção 
-    push(value) {
-        this.data.push(value)
-    }
-
-    // Remoção
-    pop() {
-        return this.data.pop()
-    }
-
-    // Verificar o último elemento ("olhadinha")
-    peek() {
-        return this.data[this.data.length - 1 ]
-    }
-    // Retorna o número de elementos da pílha 
-    size() { 
-        return this.data.length
-    }
-}
-
-// let pilha = new Stack()
-// pilha.push(10)
-// pilha.push(8)
-// pilha.push(15)
-// pilha.push(2)
-// //pilha.unshift(4)
-
-// console.log(pilha)
-
-// console.log(pilha.pop())
-// console.log(pilha)
-
-// console.log(pilha.peek())
-// console.log(pilha)
-
-// console.log('Tamanho: ', pilha.size())
-// pilha.push(-9)
-// console.log(pilha)
-// console.log('Tamanho: ', pilha.size())
-
+const Stack = require('./lib/Stack')
 
 let texto = ' TESTE DE INVERSÃO '
 

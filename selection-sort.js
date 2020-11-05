@@ -1,59 +1,56 @@
 /*
-   Parâmetros:
-   vet: o vetor sendo processado
-   posIni: a posição inicial a partir da qual vamos
-      procurar o menor valor
+    Parâmetros:
+    1) O vetor onde será feita a busca
+    2) A posição inicial do vetor a partir da qual será feita a busca
+    Retorno:
+    -- A POSIÇÃO do menor valor encontrado
 */
-function encontrarPosMenor(vet, posIni, fnComp) {
-   let posMenor = posIni
-   for(let i = posIni + 1; i < vet.length; i++) {
-      // if(vet[i] < vet[posMenor]) posMenor = i
-      if(fnComp(vet[posMenor], vet[i])) posMenor = i
-   }
-   return posMenor
+function selectionSort(vetor) {
+    let passadas = 0, comparacoes = 0, totalTrocas = 0
+
+    function encontrarMenor(vetor, inicio) {
+        let res = inicio
+        // for interno
+        for(let i = inicio + 1; i < vetor.length; i++) {
+            comparacoes++
+            if(vetor[i] < vetor[res]) res = i
+        }
+        return res
+    }
+
+    // for externo -> vai da primeira à PENÚLTIMA posição
+    for(let i = 0; i < vetor.length - 1; i++) {
+        passadas++
+        
+        let posMenor = encontrarMenor(vetor, i + 1)
+        
+        comparacoes++
+        if(vetor[i] > vetor[posMenor]) {
+            // Permuta de valores via desestruturação
+            [vetor[i], vetor[posMenor]] = [vetor[posMenor], vetor[i]]
+            totalTrocas++
+        }
+    }
+    console.log({passadas, comparacoes, totalTrocas})
 }
+
+//             0   1   2   3   4   5   6   7  8   9  10  11
+const nums = [56, 78, 44, 23, 99, 14, 60, 37, 6, 82, 31, 65]
+
+//console.log(encontrarMenor(nums, 9))  // Deve retornar 10, que é a posição do valor 31
 
 /*
-   Parâmetros:
-   vet: o vetor onde será operada a troca (passagem por referência)
-   i, j: as posições do vetor que serão trocadas entre si
+console.time('Teste nums')
+selectionSort(nums)
+console.timeEnd('Teste nums')
+console.log(nums)
 */
-function troca(vet, i, j) {
-   let aux = vet[i]
-   vet[i] = vet[j]
-   vet[j] = aux
-}
 
-function selectionSort(vet, fnComp) {
-   // Este for também só vai até o penúltimo
-   for(let posIni = 0; posIni < vet.length - 1; posIni++) {
-      posMenor = encontrarPosMenor(vet, posIni + 1, fnComp)
-      //if(vet[posMenor] < vet[posIni]) troca(vet, posMenor, posIni)
-      if(fnComp(vet[posIni], vet[posMenor])) troca(vet, posMenor, posIni)
-   }
-}
-
-// let covid = require('./amostras/covid-dia1305')
-
-// Selection sort ordenando por código IBGE do município
-// selectionSort(covid, (a, b) => a.estimated_population_2019 > b.estimated_population_2019)
-
-// console.log(covid)
-
-/* let nums = [8, 3, 2, 9, 4, 0, 6, 5, 2, 7, 1]
-//selectionSort(nums, comparaNumeros)
-function comparaNumeros(a, b) {
-   return a > b
-}
-// Usando arrow function
-selectionSort(nums, (a, b) => a > b)
-console.log(nums) */
-
- const nomes = require('./dados/100-mil-nomes')
+const nomes = require('./dados/100-mil-nomes')
 console.time('Teste nomes')
 selectionSort(nomes)
-console.time('Teste nomes')
+console.timeEnd('Teste nomes')
 // Medindo a memória empregada
-const memoria = process.memoryUsage().heapused / 1024 / 1024
+const memoria = process.memoryUsage().heapUsed / 1024 / 1024
 console.log(nomes)
-console.log('Memória usada: (MB)', memoria) 
+console.log('Memória usada: (MB)', memoria)
